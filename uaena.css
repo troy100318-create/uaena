@@ -513,6 +513,31 @@ a {
   cursor: pointer;
 }
 
+.sort-row {
+  display: flex;
+  gap: 10px;
+  width: min(100%, 1100px);
+  margin: 18px auto 0;
+  flex-wrap: wrap;
+}
+
+.sort-btn {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sort-btn.active {
+  color: var(--text);
+  background: rgba(138, 125, 255, 0.15);
+  border-color: rgba(138, 125, 255, 0.35);
+}
+
 .city-status {
   margin-bottom: 12px;
   color: var(--muted);

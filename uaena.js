@@ -58,7 +58,8 @@ const userLocation = {
 const state = {
   query: '',
   city: '서울시',
-  dataVersion: 1
+  dataVersion: 1,
+  sortBy: 'recommend'
 };
 
 const categoryList = document.getElementById('categoryList');
@@ -122,48 +123,54 @@ function filterPlacesBySearch(data) {
   const normalizedQuery = state.query.trim().toLowerCase();
   const cityPlaces = data.filter((place) => place.city === state.city);
 
-  if (!normalizedQuery) {
-    return cityPlaces.filter((place) => place.score >= 3.0);
-  }
-
-  return cityPlaces.filter((place) => {
-    const haystack = [
-      place.name,
-      place.bigCategory,
-      place.smallCategory,
-      place.vibe,
-      place.city,
-      place.district
-    ]
-      .join(' ')
-      .toLowerCase();
-
-    return haystack.includes(normalizedQuery) && place.score >= 3.0;
-  });
-}
-
-function renderPlaces() {
-  const cityPlaces = places.filter((place) => place.city === state.city);
-  const filteredPlaces = filterPlacesBySearch(places);
-
-  cityStatus.textContent = `${state.city} 기준으로만 추천합니다. 다른 시의 상점은 표시하지 않습니다.`;
-
-  if (!state.query.trim()) {
-    categorySummary.innerHTML = '';
-    categoryList.innerHTML = '<div class="empty-state">검색어를 입력하면 현재 거주 시의 추천 결과를 보여드립니다.</div>';
-    resultsCount.textContent = '0곳';
-    avgRating.textContent = '0.0';
-    return;
-  }
-
-  const rankedPlaces = filteredPlaces
+  return cityPlaces
     .map((place) => {
       const distance = getDistanceKm(userLocation.lat, userLocation.lng, place.lat, place.lng);
       const score = averageRating(place.platforms);
       return { ...place, distance, score };
     })
-    .filter((place) => place.score >= 3.0)
-    .sort((a, b) => b.score - a.score || a.distance - b.distance);
+    .filter((place) => place.score >= 4.0)
+    .filter((place) => {
+      if (!normalizedQuery) return true;
+
+      const haystack = [
+        place.name,
+        place.bigCategory,
+        place.smallCategory,
+        place.vibe,
+        place.city,
+        place.district
+      ]
+        .join(' ')
+        .toLowerCase();
+
+      return haystack.includes(normalizedQuery);
+    })
+    .sort((a, b) => {
+      if (state.sortBy === 'rating') {
+        return b.score - a.score || a.distance - b.distance;
+      }
+
+      if (state.sortBy === 'distance') {
+        return a.distance - b.distance || b.score - a.score;
+      }
+
+      return b.score - a.score || a.distance - b.distance;
+    });
+}
+
+function renderPlaces() {
+  const rankedPlaces = filterPlacesBySearch(places);
+
+  cityStatus.textContent = `${state.city} 기준으로만 추천합니다. 다른 시의 상점은 표시하지 않습니다.`;
+
+  if (!rankedPlaces.length) {
+    categorySummary.innerHTML = '';
+    categoryList.innerHTML = '<div class="empty-state">현재 위치 기준 4.0점 이상 추천 장소가 아직 없어요.</div>';
+    resultsCount.textContent = '0곳';
+    avgRating.textContent = '0.0';
+    return;
+  }
 
   resultsCount.textContent = `${rankedPlaces.length}곳`;
   const ratingAverage = rankedPlaces.length
@@ -361,6 +368,15 @@ searchInput.addEventListener('keydown', (event) => {
     state.query = searchInput.value;
     renderPlaces();
   }
+});
+
+const sortButtons = document.querySelectorAll('.sort-btn');
+sortButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    state.sortBy = button.dataset.sort;
+    sortButtons.forEach((item) => item.classList.toggle('active', item === button));
+    renderPlaces();
+  });
 });
 
 feedbackBtn.addEventListener('click', openFeedbackModal);
