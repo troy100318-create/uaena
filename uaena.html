@@ -1,798 +1,133 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
-
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>Uaena - 내 주변 핫플</title>
-
-  <style>
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-
-      margin: 0;
-
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Noto Sans KR",
-        sans-serif;
-
-      background: #f7f5ff;
-
-      color: #27213d;
-    }
-
-    header {
-
-      padding: 35px 20px 65px;
-
-      color: white;
-
-      background:
-        linear-gradient(
-          135deg,
-          #7c3aed,
-          #ec4899
-        );
-
-      border-radius:
-        0 0 30px 30px;
-    }
-
-    .header {
-
-      max-width: 1000px;
-
-      margin: auto;
-    }
-
-    .logo {
-
-      font-size: 30px;
-
-      font-weight: 900;
-    }
-
-    .subtitle {
-
-      margin-top: 8px;
-
-      opacity: .9;
-    }
-
-    main {
-
-      max-width: 1000px;
-
-      margin: -30px auto 50px;
-
-      padding: 0 18px;
-    }
-
-    .location {
-
-      background: white;
-
-      border-radius: 20px;
-
-      padding: 20px;
-
-      box-shadow:
-        0 10px 30px
-        rgba(50, 30, 100, .12);
-
-      display: flex;
-
-      justify-content:
-        space-between;
-
-      align-items: center;
-
-      gap: 15px;
-    }
-
-    button {
-
-      border: 0;
-
-      cursor: pointer;
-
-      font-family: inherit;
-    }
-
-    #findButton {
-
-      background: #7c3aed;
-
-      color: white;
-
-      border-radius: 12px;
-
-      padding: 13px 18px;
-
-      font-weight: 800;
-    }
-
-    .categories {
-
-      display: flex;
-
-      gap: 8px;
-
-      overflow-x: auto;
-
-      margin: 25px 0;
-    }
-
-    .category {
-
-      white-space: nowrap;
-
-      background: white;
-
-      padding: 10px 16px;
-
-      border-radius: 999px;
-
-      color: #6d657d;
-
-      font-weight: 700;
-    }
-
-    .category.active {
-
-      background: #7c3aed;
-
-      color: white;
-    }
-
-    .places {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 18px;
-    }
-
-    .card {
-
-      background: white;
-
-      border-radius: 20px;
-
-      overflow: hidden;
-
-      box-shadow:
-        0 8px 25px
-        rgba(40, 30, 80, .08);
-    }
-
-    .card-top {
-
-      padding: 25px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #eee8ff,
-          #fce7f3
-        );
-    }
-
-    .place-icon {
-
-      font-size: 45px;
-    }
-
-    .card-body {
-
-      padding: 18px;
-    }
-
-    .card h3 {
-
-      margin:
-        0 0 8px;
-
-      font-size: 18px;
-    }
-
-    .rating {
-
-      color: #f59e0b;
-
-      font-weight: 900;
-    }
-
-    .reviews {
-
-      color: #777;
-
-      font-size: 13px;
-    }
-
-    .distance {
-
-      margin-top: 8px;
-
-      color: #777;
-
-      font-size: 13px;
-    }
-
-    .address {
-
-      margin-top: 10px;
-
-      color: #888;
-
-      font-size: 12px;
-
-      line-height: 1.5;
-    }
-
-    .buttons {
-
-      display: flex;
-
-      gap: 7px;
-
-      margin-top: 15px;
-    }
-
-    .map-button {
-
-      flex: 1;
-
-      padding: 10px;
-
-      border-radius: 10px;
-
-      background: #f1edff;
-
-      color: #6d28d9;
-
-      font-weight: 700;
-
-      text-align: center;
-
-      text-decoration: none;
-
-      font-size: 12px;
-    }
-
-    .empty {
-
-      background: white;
-
-      padding: 50px 20px;
-
-      border-radius: 20px;
-
-      text-align: center;
-
-      color: #888;
-    }
-
-    @media(max-width: 750px) {
-
-      .places {
-
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-    }
-
-    @media(max-width: 520px) {
-
-      .location {
-
-        flex-direction: column;
-
-        align-items: stretch;
-      }
-
-      #findButton {
-
-        width: 100%;
-      }
-
-      .places {
-
-        grid-template-columns: 1fr;
-      }
-
-    }
-
-  </style>
-
-</head>
-
-
-<body>
-
-<header>
-
-  <div class="header">
-
-    <div class="logo">
-      💜 Uaena
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UAENA - 주변 핫플 추천</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="uaena.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-wrap">
+          <div class="brand-mark">U</div>
+          <div>
+            <p class="eyebrow">UAENA</p>
+            <h1>내 주변 핫플</h1>
+          </div>
+        </div>
+        <button id="refreshBtn" class="ghost-btn">위치 새로고침</button>
+      </header>
+
+      <button id="feedbackBtn" class="feedback-fab" type="button" aria-label="불편한 점 건의하기">
+        건의함
+      </button>
+
+      <main class="content">
+        <section class="hero">
+          <div class="hero-copy">
+            <span class="pill">평점 4.0 이상</span>
+            <h2>지금 내 주변에서<br />인기 있는 장소를 추천해드릴게요.</h2>
+            <p>
+              플랫폼 리뷰와 거리, 분위기를 기준으로 지금 가장 핫한 곳만 골라서
+              제안합니다.
+            </p>
+            <div class="location-box">
+              <span class="dot"></span>
+              <div>
+                <label>현재 위치</label>
+                <strong id="locationText">위치 확인 중...</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="추천 요약 카드">
+            <div class="stat-card primary">
+              <span>추천 매장</span>
+              <strong id="resultsCount">0곳</strong>
+            </div>
+            <div class="stat-card secondary">
+              <span>평균 평점</span>
+              <strong id="avgRating">0.0</strong>
+            </div>
+            <div class="map-glow">
+              <div class="pin pin-one"></div>
+              <div class="pin pin-two"></div>
+              <div class="pin pin-three"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="filters">
+          <div class="filter-chip active">추천순</div>
+          <div class="filter-chip">거리순</div>
+          <div class="filter-chip">평점순</div>
+        </section>
+
+        <section class="list-section">
+          <div class="section-header">
+            <h3>플랫폼 평점 4.0 이상 추천</h3>
+            <span id="statusBadge" class="status-badge">위치 탐색 중</span>
+          </div>
+          <ul id="placeList" class="place-list"></ul>
+        </section>
+      </main>
     </div>
 
-    <div class="subtitle">
-      내 주변에서 검증된 핫플을 찾아보세요
-    </div>
+    <div id="feedbackModal" class="feedback-modal hidden" aria-hidden="true">
+      <div class="feedback-panel" role="dialog" aria-modal="true" aria-labelledby="feedbackTitle">
+        <button id="closeFeedbackModal" class="close-btn" type="button" aria-label="닫기">×</button>
 
-  </div>
+        <div class="feedback-header">
+          <p class="eyebrow small">UAENA</p>
+          <h3 id="feedbackTitle">불편한 점 건의하기</h3>
+        </div>
 
-</header>
+        <form id="feedbackForm" action="https://formspree.io/f/xeaoznyv" method="POST">
+          <input type="hidden" name="_subject" value="UAENA 불편사항 건의" />
+          <input type="hidden" name="_captcha" value="false" />
 
+          <div class="field-group">
+            <label for="feedbackName">이름</label>
+            <input id="feedbackName" name="name" type="text" placeholder="홍길동" />
+          </div>
 
-<main>
+          <div class="field-group">
+            <label for="feedbackEmail">이메일</label>
+            <input id="feedbackEmail" name="email" type="email" placeholder="example@email.com" />
+          </div>
 
-  <section class="location">
+          <div class="field-group">
+            <label for="feedbackType">건의 유형</label>
+            <select id="feedbackType" name="category">
+              <option value="서비스 불편">서비스 불편</option>
+              <option value="잘못된 추천">잘못된 추천</option>
+              <option value="위치 관련">위치 관련</option>
+              <option value="UI/UX 개선">UI/UX 개선</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
 
-    <div>
+          <div class="field-group">
+            <label for="feedbackMessage">상세 내용</label>
+            <textarea
+              id="feedbackMessage"
+              name="message"
+              rows="5"
+              placeholder="불편했던 점이나 개선하고 싶은 내용을 자세히 적어주세요."
+              required
+            ></textarea>
+          </div>
 
-      <strong id="locationTitle">
-        📍 내 주변 핫플
-      </strong>
-
-      <div
-        id="status"
-        style="
-          margin-top:6px;
-          color:#888;
-          font-size:13px;
-        "
-      >
-        위치를 확인하면 주변 장소를 검색합니다.
+          <button class="submit-btn" type="submit">건의사항 보내기</button>
+          <p id="formStatus" class="form-status" aria-live="polite"></p>
+        </form>
       </div>
-
     </div>
 
-    <button id="findButton">
-      📍 주변 핫플 찾기
-    </button>
-
-  </section>
-
-
-  <div class="categories">
-
-    <button
-      class="category active"
-      data-category="전체"
-    >
-      ✨ 전체
-    </button>
-
-    <button
-      class="category"
-      data-category="맛집"
-    >
-      🍽️ 맛집
-    </button>
-
-    <button
-      class="category"
-      data-category="카페"
-    >
-      ☕ 카페
-    </button>
-
-    <button
-      class="category"
-      data-category="쇼핑"
-    >
-      🛍️ 쇼핑
-    </button>
-
-    <button
-      class="category"
-      data-category="문화"
-    >
-      🎨 문화
-    </button>
-
-  </div>
-
-
-  <div id="places">
-
-    <div class="empty">
-
-      <div style="font-size:40px">
-        📍
-      </div>
-
-      <p>
-        위치를 허용하면<br>
-        내 주변의 인기 장소를 찾아드려요.
-      </p>
-
-    </div>
-
-  </div>
-
-</main>
-
-
-<script>
-
-  let latitude = null;
-
-  let longitude = null;
-
-  let currentCategory = "전체";
-
-
-  const places =
-    document.getElementById("places");
-
-  const status =
-    document.getElementById("status");
-
-
-  /*
-   * 위치 가져오기
-   */
-
-  function getLocation() {
-
-    return new Promise(
-      (resolve, reject) => {
-
-        if (!navigator.geolocation) {
-
-          reject(
-            new Error(
-              "이 브라우저에서는 위치 기능을 지원하지 않습니다."
-            )
-          );
-
-          return;
-        }
-
-
-        navigator.geolocation.getCurrentPosition(
-
-          position => {
-
-            latitude =
-              position.coords.latitude;
-
-            longitude =
-              position.coords.longitude;
-
-            resolve(position);
-
-          },
-
-          error => {
-
-            reject(error);
-
-          },
-
-          {
-
-            enableHighAccuracy: true,
-
-            timeout: 10000,
-
-            maximumAge: 300000
-
-          }
-
-        );
-
-      }
-    );
-
-  }
-
-
-  /*
-   * 주변 핫플 검색
-   */
-
-  async function loadPlaces() {
-
-    try {
-
-      status.textContent =
-        "📡 현재 위치 주변의 장소를 검색하고 있어요...";
-
-      places.innerHTML = `
-        <div class="empty">
-          🔎 주변 핫플을 찾는 중...
-        </div>
-      `;
-
-
-      if (
-        latitude === null ||
-        longitude === null
-      ) {
-
-        await getLocation();
-
-      }
-
-
-      const params =
-        new URLSearchParams({
-
-          lat: latitude,
-
-          lng: longitude,
-
-          category:
-            currentCategory
-
-        });
-
-
-      const response =
-        await fetch(
-          `/api/hotplaces?${params}`
-        );
-
-
-      if (!response.ok) {
-
-        throw new Error(
-          "서버에서 장소를 가져오지 못했습니다."
-        );
-
-      }
-
-
-      const data =
-        await response.json();
-
-
-      renderPlaces(data.places);
-
-
-      status.textContent =
-        `${data.count}개의 장소를 찾았습니다. · 평점 4.0 이상 · 리뷰 30개 이상`;
-
-    } catch (error) {
-
-      console.error(error);
-
-      status.textContent =
-        "위치 정보를 가져오지 못했습니다.";
-
-      places.innerHTML = `
-        <div class="empty">
-
-          <div style="font-size:40px">
-            😢
-          </div>
-
-          <p>
-            위치 권한을 허용했는지 확인해주세요.
-          </p>
-
-        </div>
-      `;
-
-    }
-
-  }
-
-
-  /*
-   * 화면 출력
-   */
-
-  function renderPlaces(items) {
-
-    if (!items.length) {
-
-      places.innerHTML = `
-        <div class="empty">
-
-          😢
-
-          <p>
-            주변 5km 안에서<br>
-            조건에 맞는 장소를 찾지 못했어요.
-          </p>
-
-        </div>
-      `;
-
-      return;
-
-    }
-
-
-    places.innerHTML =
-      items.map(place => `
-
-        <article class="card">
-
-          <div class="card-top">
-
-            <div class="place-icon">
-              ${getIcon(place)}
-            </div>
-
-          </div>
-
-
-          <div class="card-body">
-
-            <h3>
-              ${escapeHtml(place.name)}
-            </h3>
-
-
-            <div>
-
-              <span class="rating">
-                ★ ${place.rating.toFixed(1)}
-              </span>
-
-              <span class="reviews">
-                · 리뷰 ${place.reviewCount.toLocaleString()}개
-              </span>
-
-            </div>
-
-
-            <div class="distance">
-              📍 ${place.distanceKm} km
-            </div>
-
-
-            <div class="address">
-              ${escapeHtml(place.address)}
-            </div>
-
-
-            <div class="buttons">
-
-              <a
-                class="map-button"
-                href="${place.googleUrl}"
-                target="_blank"
-                rel="noopener"
-              >
-                Google 지도
-              </a>
-
-              <a
-                class="map-button"
-                href="https://map.kakao.com/?q=${encodeURIComponent(place.name)}"
-                target="_blank"
-                rel="noopener"
-              >
-                카카오맵
-              </a>
-
-            </div>
-
-          </div>
-
-        </article>
-
-      `).join("");
-
-  }
-
-
-  function getIcon(place) {
-
-    if (
-      currentCategory === "카페"
-    ) return "☕";
-
-    if (
-      currentCategory === "맛집"
-    ) return "🍽️";
-
-    if (
-      currentCategory === "쇼핑"
-    ) return "🛍️";
-
-    if (
-      currentCategory === "문화"
-    ) return "🎨";
-
-    return "📍";
-
-  }
-
-
-  function escapeHtml(value) {
-
-    return String(value)
-
-      .replaceAll("&", "&amp;")
-
-      .replaceAll("<", "&lt;")
-
-      .replaceAll(">", "&gt;")
-
-      .replaceAll('"', "&quot;")
-
-      .replaceAll("'", "&#039;");
-
-  }
-
-
-  /*
-   * 위치 버튼
-   */
-
-  document
-    .getElementById("findButton")
-    .addEventListener(
-      "click",
-      loadPlaces
-    );
-
-
-  /*
-   * 카테고리
-   */
-
-
-  document
-    .querySelectorAll(".category")
-    .forEach(button => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          document
-            .querySelectorAll(".category")
-            .forEach(
-              b =>
-                b.classList.remove("active")
-            );
-
-          button.classList.add("active");
-
-          currentCategory =
-            button.dataset.category;
-
-
-          if (
-            latitude !== null
-          ) {
-
-            loadPlaces();
-
-          }
-
-        }
-      );
-
-    });
-
-</script>
-
-</body>
-
+    <script src="uaena.js"></script>
+  </body>
 </html>
