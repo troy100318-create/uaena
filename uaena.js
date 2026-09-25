@@ -73,6 +73,9 @@ const statusBadge = document.getElementById('statusBadge');
 const feedbackBtn = document.getElementById('feedbackBtn');
 const feedbackModal = document.getElementById('feedbackModal');
 const closeFeedbackModal = document.getElementById('closeFeedbackModal');
+const detailModal = document.getElementById('placeDetailModal');
+const closePlaceDetailModal = document.getElementById('closePlaceDetailModal');
+const placeDetailTitle = document.getElementById('placeDetailTitle');
 const feedbackForm = document.getElementById('feedbackForm');
 const formStatus = document.getElementById('formStatus');
 const searchInput = document.getElementById('searchInput');
@@ -258,7 +261,7 @@ function renderPlaces() {
                         </ul>
                         <div class="card-actions">
                           <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name)}" target="_blank" rel="noreferrer">길 찾기</a>
-                          <span class="score-pill">${place.score.toFixed(1)}점</span>
+                          <button class="review-btn" type="button" data-place-name="${place.name}">후기 남기기</button>
                         </div>
                       </li>
                     `;
@@ -348,6 +351,46 @@ function requestLocation() {
   });
 }
 
+function loadDisqus(place) {
+  const threadEl = document.getElementById('disqus_thread');
+  if (!threadEl) return;
+
+  threadEl.innerHTML = '';
+  const uniqueId = `${place.city}-${place.name}`.replace(/\s+/g, '-').toLowerCase();
+  const pageUrl = `https://uaena.local/place/${encodeURIComponent(uniqueId)}`;
+
+  window.disqus_config = function () {
+    this.page.url = pageUrl;
+    this.page.identifier = uniqueId;
+    this.page.title = `${place.name} 후기`;
+  };
+
+  if (window.DISQUS) {
+    window.DISQUS.reset({
+      reload: true,
+      config: window.disqus_config
+    });
+    return;
+  }
+
+  const s = document.createElement('script');
+  s.src = 'https://purilab.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', String(Date.now()));
+  document.head.appendChild(s);
+}
+
+function openPlaceReview(place) {
+  placeDetailTitle.textContent = place.name;
+  loadDisqus(place);
+  detailModal.classList.remove('hidden');
+  detailModal.setAttribute('aria-hidden', 'false');
+}
+
+function closePlaceDetail() {
+  detailModal.classList.add('hidden');
+  detailModal.setAttribute('aria-hidden', 'true');
+}
+
 function openFeedbackModal() {
   feedbackModal.classList.remove('hidden');
   feedbackModal.setAttribute('aria-hidden', 'false');
@@ -357,6 +400,18 @@ function closeFeedback() {
   feedbackModal.classList.add('hidden');
   feedbackModal.setAttribute('aria-hidden', 'true');
 }
+
+categoryList.addEventListener('click', (event) => {
+  const button = event.target.closest('.review-btn');
+  if (!button) return;
+
+  const targetName = button.dataset.placeName;
+  const foundPlace = places.find((place) => place.name === targetName && place.city === state.city);
+
+  if (foundPlace) {
+    openPlaceReview(foundPlace);
+  }
+});
 
 searchBtn.addEventListener('click', () => {
   state.query = searchInput.value;
@@ -381,15 +436,27 @@ sortButtons.forEach((button) => {
 
 feedbackBtn.addEventListener('click', openFeedbackModal);
 closeFeedbackModal.addEventListener('click', closeFeedback);
+closePlaceDetailModal.addEventListener('click', closePlaceDetail);
 feedbackModal.addEventListener('click', (event) => {
   if (event.target === feedbackModal) {
     closeFeedback();
   }
 });
 
+detailModal.addEventListener('click', (event) => {
+  if (event.target === detailModal) {
+    closePlaceDetail();
+  }
+});
+
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && !feedbackModal.classList.contains('hidden')) {
-    closeFeedback();
+  if (event.key === 'Escape') {
+    if (!feedbackModal.classList.contains('hidden')) {
+      closeFeedback();
+    }
+    if (!detailModal.classList.contains('hidden')) {
+      closePlaceDetail();
+    }
   }
 });
 
