@@ -261,6 +261,25 @@ a {
   letter-spacing: 0.04rem;
 }
 
+.partner-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 0;
+}
+
+.partner-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
 .hero-copy h2 {
   margin: 18px 0 12px;
   font-size: clamp(2.2rem, 5vw, 4rem);
