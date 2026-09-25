@@ -58,26 +58,39 @@
               <span>평균 평점</span>
               <strong id="avgRating">0.0</strong>
             </div>
-            <div class="map-glow">
-              <div class="pin pin-one"></div>
-              <div class="pin pin-two"></div>
-              <div class="pin pin-three"></div>
+
+            <div class="plan-map" aria-hidden="true">
+              <div class="plan-road road-horizontal"></div>
+              <div class="plan-road road-vertical"></div>
+              <div class="plan-block block-a">라이트하우스</div>
+              <div class="plan-block block-b">모먼트</div>
+              <div class="plan-block block-c">플래닛</div>
+              <div class="plan-block block-d">블랙홀</div>
+              <div class="plan-block block-e">엔터테인</div>
             </div>
           </div>
         </section>
 
         <section class="filters">
-          <div class="filter-chip active">추천순</div>
-          <div class="filter-chip">거리순</div>
-          <div class="filter-chip">평점순</div>
+          <div class="filter-chip active">검색 기반 추천</div>
+          <div class="filter-chip">현재 시 내만</div>
+          <div class="filter-chip">1시간 데이터 갱신</div>
         </section>
+
+        <div class="search-wrap">
+          <input id="searchInput" type="text" placeholder="예: 브런치, 방탈출, 카페, 맛집" />
+          <button id="searchBtn" type="button">추천 보기</button>
+        </div>
 
         <section class="list-section">
           <div class="section-header">
-            <h3>플랫폼 평점 4.0 이상 추천</h3>
+            <h3>현재 거주 지역 기준 추천</h3>
             <span id="statusBadge" class="status-badge">위치 탐색 중</span>
           </div>
-          <ul id="placeList" class="place-list"></ul>
+
+          <div id="cityStatus" class="city-status">검색 전에는 다른 시의 상점은 노출하지 않습니다.</div>
+          <div id="categorySummary" class="category-summary" aria-live="polite"></div>
+          <div id="categoryList" class="category-list"></div>
         </section>
       </main>
     </div>
