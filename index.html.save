@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uaena</title>
+</head>
+<body>
+  <h1>Uaena</h1>
+  <p>웹사이트가 정상적으로 배포되었습니다!</p>
+</body>
+</html><!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uaena</title>
+</head>
+<body>
+  <h1>Uaena</h1>
+  <p>웹사이트가 정상적으로 배포되었습니다!</p>
+</body>
+</html>
+
+<!DOCTYPE html><html lang="ko"><head>  <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Uaena</title></head><body>  <h1>Uaena</h1>  <p>웹사이트가 정상적으로 배포되었습니다!</p></body></html>
+
+
+ls -la
+ls -la
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uaena</title>
+</head>
+<body>
+  <h1>Uaena</h1>
+  <p>웹사이트가 정상적으로 배포되었습니다!</p>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uaena</title>
+</head>
+<body>
+  <h1>Uaena</h1>
+  <p>웹사이트가 정상적으로 배포되었습니다!</p>
+</body>
+</html>
+
+ls -la
+ls -la<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uaena - 주변 핫플 추천</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7fb;
+      color: #222;
+    }
+
+    header {
+      padding: 24px;
+      background: white;
+      border-bottom: 1px solid #eee;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      color: #777;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .hero {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 18px;
+      background: #222;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    #location {
+      margin-top: 15px;
+      color: #666;
+    }
+
+    .places {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 9px;
+      background: #f0f0f5;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Uaena</h1>
+  <p>내 주변의 새로운 핫플을 찾아보세요.</p>
+</header>
+
+<main>
+
+  <section class="hero">
+    <h2>📍 주변 핫플 찾기</h2>
+    <p>현재 위치를 이용해 주변 장소를 추천받아보세요.</p>
+
+    <button onclick="findLocation()">내 위치 확인</button>
+
+    <div id="location">
+      위치 정보를 기다리는 중...
+    </div>
+  </section>
+
+  <section>
+    <h2>🔥 추천 핫플</h2>
+
+    <div class="places">
+
+      <div class="card">
+        <span class="tag">카페</span>
+        <h3>감성 카페</h3>
+        <p>조용하게 시간을 보내기 좋은 카페를 찾아보세요.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">맛집</span>
+        <h3>인기 맛집</h3>
+        <p>주변에서 사람들이 많이 찾는 맛집을 발견해보세요.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">데이트</span>
+        <h3>데이트 스팟</h3>
+        <p>친구나 가족과 함께 방문하기 좋은 장소입니다.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">여가</span>
+        <h3>새로운 놀거리</h3>
+        <p>평소 가보지 않았던 새로운 장소를 찾아보세요.</p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<script>
+function findLocation() {
+  const locationText = document.getElementById("location");
+
+  if (!navigator.geolocation) {
+    locationText.textContent = "이 브라우저에서는 위치 기능을 지원하지 않습니다.";
+    return;
+  }
+
+  locationText.textContent = "위치를 확인하는 중입니다...";
+
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      locationText.textContent =
+        `현재 위치 확인 완료 · 위도 ${lat.toFixed(4)}, 경도 ${lon.toFixed(4)}`;
+    },
+    function() {
+      locationText.textContent =
+        "위치 정보를 가져오지 못했습니다. 브라우저의 위치 권한을 확인해주세요.";
+    }
+  );
+}
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uaena - 주변 핫플 추천</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7fb;
+      color: #222;
+    }
+
+    header {
+      padding: 24px;
+      background: white;
+      border-bottom: 1px solid #eee;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      color: #777;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .hero {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 18px;
+      background: #222;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    #location {
+      margin-top: 15px;
+      color: #666;
+    }
+
+    .places {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 9px;
+      background: #f0f0f5;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Uaena</h1>
+  <p>내 주변의 새로운 핫플을 찾아보세요.</p>
+</header>
+
+<main>
+
+  <section class="hero">
+    <h2>📍 주변 핫플 찾기</h2>
+    <p>현재 위치를 이용해 주변 장소를 추천받아보세요.</p>
+
+    <button onclick="findLocation()">내 위치 확인</button>
+
+    <div id="location">
+      위치 정보를 기다리는 중...
+    </div>
+  </section>
+
+  <section>
+    <h2>🔥 추천 핫플</h2>
+
+    <div class="places">
+
+      <div class="card">
+        <span class="tag">카페</span>
+        <h3>감성 카페</h3>
+        <p>조용하게 시간을 보내기 좋은 카페를 찾아보세요.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">맛집</span>
+        <h3>인기 맛집</h3>
+        <p>주변에서 사람들이 많이 찾는 맛집을 발견해보세요.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">데이트</span>
+        <h3>데이트 스팟</h3>
+        <p>친구나 가족과 함께 방문하기 좋은 장소입니다.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">여가</span>
+        <h3>새로운 놀거리</h3>
+        <p>평소 가보지 않았던 새로운 장소를 찾아보세요.</p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<script>
+function findLocation() {
+  const locationText = document.getElementById("location");
+
+  if (!navigator.geolocation) {
+    locationText.textContent = "이 브라우저에서는 위치 기능을 지원하지 않습니다.";
+    return;
+  }
+
+  locationText.textContent = "위치를 확인하는 중입니다...";
+
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      locationText.textContent =
+        `현재 위치 확인 완료 · 위도 ${lat.toFixed(4)}, 경도 ${lon.toFixed(4)}`;
+    },
+    function() {
+      locationText.textContent =
+        "위치 정보를 가져오지 못했습니다. 브라우저의 위치 권한을 확인해주세요.";
+    }
+  );
+}
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uaena - 주변 핫플 추천</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7fb;
+      color: #222;
+    }
+
+    header {
+      padding: 24px;
+      background: white;
+      border-bottom: 1px solid #eee;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      color: #777;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .hero {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 18px;
+      background: #222;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    #location {
+      margin-top: 15px;
+      color: #666;
+    }
+
+    .places {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 9px;
+      background: #f0f0f5;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Uaena</h1>
+  <p>내 주변의 새로운 핫플을 찾아보세요.</p>
+</header>
+
+<main>
+
+  <section class="hero">
+    <h2>📍 주변 핫플 찾기</h2>
+    <p>현재 위치를 이용해 주변 장소를 추천받아보세요.</p>
+
+    <button onclick="findLocation()">내 위치 확인</button>
+
+    <div id="location">
+      위치 정보를 기다리는 중...
+    </div>
+  </section>
+
+  <section>
+    <h2>🔥 추천 핫플</h2>
+
+    <div class="places">
+
+      <div class="card">
+        <span class="tag">카페</span>
+        <h3>감성 카페</h3>
+        <p>조용하게 시간을 보내기 좋은 카페를 찾아보세요.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">맛집</span>
+        <h3>인기 맛집</h3>
+        <p>주변에서 사람들이 많이 찾는 맛집을 발견해보세요.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">데이트</span>
+        <h3>데이트 스팟</h3>
+        <p>친구나 가족과 함께 방문하기 좋은 장소입니다.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">여가</span>
+        <h3>새로운 놀거리</h3>
+        <p>평소 가보지 않았던 새로운 장소를 찾아보세요.</p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<script>
+function findLocation() {
+  const locationText = document.getElementById("location");
+
+  if (!navigator.geolocation) {
+    locationText.textContent = "이 브라우저에서는 위치 기능을 지원하지 않습니다.";
+    return;
+  }
+
+  locationText.textContent = "위치를 확인하는 중입니다...";
+
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      locationText.textContent =
+        `현재 위치 확인 완료 · 위도 ${lat.toFixed(4)}, 경도 ${lon.toFixed(4)}`;
+    },
+    function() {
+      locationText.textContent =
+        "위치 정보를 가져오지 못했습니다. 브라우저의 위치 권한을 확인해주세요.";
+    }
+  );
+}
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uaena - 주변 핫플 추천</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7fb;
+      color: #222;
+    }
+
+    header {
+      padding: 24px;
+      background: white;
+      border-bottom: 1px solid #eee;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      color: #777;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .hero {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 18px;
+      background: #222;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    #location {
+      margin-top: 15px;
+      color: #666;
+    }
+
+    .places {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 9px;
+      background: #f0f0f5;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Uaena</h1>
+  <p>내 주변의 새로운 핫플을 찾아보세요.</p>
+</header>
+
+<main>
+
+  <section class="hero">
+    <h2>📍 주변 핫플 찾기</h2>
+    <p>현재 위치를 이용해 주변 장소를 추천받아보세요.</p>
+
+    <button onclick="findLocation()">내 위치 확인</button>
+
+    <div id="location">
+      위치 정보를 기다리는 중...
+    </div>
+  </section>
+
+  <section>
+    <h2>🔥 추천 핫플</h2>
+
+    <div class="places">
+
+      <div class="card">
+        <span class="tag">카페</span>
+        <h3>감성 카페</h3>
+        <p>조용하게 시간을 보내기 좋은 카페를 찾아보세요.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">맛집</span>
+        <h3>인기 맛집</h3>
+        <p>주변에서 사람들이 많이 찾는 맛집을 발견해보세요.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">데이트</span>
+        <h3>데이트 스팟</h3>
+        <p>친구나 가족과 함께 방문하기 좋은 장소입니다.</p>
+      </div>
+
+      <div class="card">
+        <span class="tag">여가</span>
+        <h3>새로운 놀거리</h3>
+        <p>평소 가보지 않았던 새로운 장소를 찾아보세요.</p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<script>
+function findLocation() {
+  const locationText = document.getElementById("location");
+
+  if (!navigator.geolocation) {
+    locationText.textContent = "이 브라우저에서는 위치 기능을 지원하지 않습니다.";
+    return;
+  }
+
+  locationText.textContent = "위치를 확인하는 중입니다...";
+
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      locationText.textContent =
+        `현재 위치 확인 완료 · 위도 ${lat.toFixed(4)}, 경도 ${lon.toFixed(4)}`;
+    },
+    function() {
+      locationText.textContent =
+        "위치 정보를 가져오지 못했습니다. 브라우저의 위치 권한을 확인해주세요.";
+    }
+  );
+}
+</script>
+
+</body>
+</html>
+
+mv uaena.html index.htmlㅇㄴ
+mv uaena.html index.htmlmv uaena.html index.htmlmv uaena.html index.html
